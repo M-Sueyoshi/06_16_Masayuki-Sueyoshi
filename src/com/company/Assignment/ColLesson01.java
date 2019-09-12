@@ -1,40 +1,28 @@
 package com.company.Assignment;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class ColLesson01 {
     public static void main(String[] args) {
-        String[] hako = new String[2];
-        String[] str = new String[10];
-        Scanner sc = new Scanner(System.in);
         System.out.println("わからなかった単語とその意味をスペースで区切って入力してください");
+        Word[] words = new Word[10];
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        int index= 0;
+        while(!input.equals("e")){
+            String[] tmp = input.split(" ");
+            Word wd = new Word(tmp[0],tmp[1]);
+            words[index] = wd;
+            index++;
+
+        input= sc.nextLine();
+        }
 
         int i=0;
-        while(i<10) {
-                str[i] =sc.nextLine();
-                if(Arrays.asList(str).contains("e")){
-                    System.out.println("終了します");
-                    System.out.println("下記の通り"+i+"件の単語が登録されました。");
-                    break;
-                }
-                i++;
-            System.out.println("次の単語と意味を入力してください。\"e\"で終了します。");
+        for (i=0; i<index ;i++){
+             System.out.println("単語:"+words[i].word+"意味:"+words[i].meaning);
 
         }
-        int n=0;
-        for (n=0; n<i ;n++){
-            try{
-            hako = str[n].split(" ");
-            System.out.print("単語:"+hako[0]);
-            System.out.println("意味:"+hako[1]);
-            }catch(NullPointerException e){
-                System.out.println("リストが終了しました");
-                break;
-            }
-
-        }
-        System.out.println(n+"件登録しています");
+        System.out.println(i+"件登録しています");
         }
     }
 
